@@ -35,7 +35,7 @@ export const theaterData: TheaterData[] = [
             {
                 dimensionCategory: 'Regular 2D',
                 time: [ '11:00', '13:45', '14:40', '15:40', '17:15', '18:15', '20:00', '21:00'],
-                price: '240 - 265',
+                price: '265',
             },
             {
                 dimensionCategory: 'Gold Class 2D',
@@ -105,7 +105,7 @@ export const theaterData: TheaterData[] = [
             {
                 dimensionCategory: 'Regular 2D',
                 time: [ '11:00', '13:45', '14:40', '15:40', '17:15', '18:15', '20:00', '21:00'],
-                price: '240 - 265',
+                price: '265',
             },
             {
                 dimensionCategory: 'Gold Class 2D',
@@ -175,7 +175,7 @@ export const theaterData: TheaterData[] = [
             {
                 dimensionCategory: 'Regular 2D',
                 time: [ '11:00', '13:45', '14:40', '15:40', '17:15', '18:15', '20:00', '21:00'],
-                price: '240 - 265',
+                price: '265',
             },
             {
                 dimensionCategory: 'Gold Class 2D',

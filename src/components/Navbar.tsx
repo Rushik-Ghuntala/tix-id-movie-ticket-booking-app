@@ -27,7 +27,9 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    My Ticket
+                    <Link to={'/my-ticket'}>
+                        My Ticket
+                    </Link>
                 </li>
                 <li>
                     TIX ID News

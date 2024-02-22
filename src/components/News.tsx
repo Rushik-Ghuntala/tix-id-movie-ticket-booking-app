@@ -1,12 +1,25 @@
 // import React from 'react'
 import { Link } from 'react-router-dom'
-import { newsData } from '../data-API/news-data'
-import { useSelector } from 'react-redux'
+// import { newsData } from '../data-API/news-data'
+import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import { useEffect } from 'react'
+import { showNewsData } from '../redux/Thunk/NewsThunk'
+import { NewsData } from '../data'
 
 const News = () => {
 
     const login = useSelector((state: any) => state.login)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(showNewsData() as any)
+    },[])
+
+    const {newsData, loading} = useSelector((state: {news: {newsData: NewsData[], loading: boolean}}) => state.news)
+
+    console.log("NewsData form Thunk: " , newsData)
 
 
   return (
@@ -21,7 +34,7 @@ const News = () => {
                 <div className='text-2xl font-medium text-[--Sky-Blue]'>
                     {
                         // login.isLoggedIn && 
-                        !login.isLoggedIn ?  <Link to={'/news'}>View All</Link> : <div className="cursor-pointer" onClick={() => toast.error("Please Login!")}>View All</div>
+                        login.isLoggedIn ?  <Link to={'/news'}>View All</Link> : <div className="cursor-pointer" onClick={() => toast.error("Please Login!")}>View All</div>
                         // <Link to={'/news'}>
                         //     View All
                         // </Link>
@@ -32,7 +45,7 @@ const News = () => {
             {/* Main section  */}
             <div className='flex  overflow-scroll scroll_none'>
                 {   
-                    newsData.map( (news) => (
+                    newsData.map((news: NewsData) => (
                         <div key={news.id} className='min-w-[420px] mx-7 '>
                             <div className='flex justify-between'>
                                 <div className='mb-[2.5rem]'>

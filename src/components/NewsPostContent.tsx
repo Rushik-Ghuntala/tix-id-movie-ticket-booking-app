@@ -2,12 +2,25 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { NewsPostsData, newsData } from "../data-API/news-data";
+// import { NewsPostsData, newsData } from "../data-API/news-data";
 import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import { useDispatch, useSelector } from "react-redux";
+import { showNewsData } from "../redux/Thunk/NewsThunk";
+import { NewsData } from "../data";
 
 
 const NewsContent = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(showNewsData() as any)
+  },[])
+
+  const {newsData, loading} = useSelector((state: {news: {newsData: NewsData[], loading: boolean}}) => state.news)
+
+  // console.log("NewsData form Thunk: " , newsData)
 
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
@@ -16,7 +29,7 @@ const NewsContent = () => {
     };
 
     const [searchParams] = useSearchParams();
-    const [data, setData] = useState<NewsPostsData>();
+    const [data, setData] = useState<NewsData>();
 
     const getId = () => {
         const id = searchParams.get("id");

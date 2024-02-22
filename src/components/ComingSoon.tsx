@@ -1,12 +1,25 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
-import { comingSoonMovies } from "../data-API/coming-soon-movies";
-import { useSelector } from "react-redux";
+// import { comingSoonMovies } from "../data-API/coming-soon-movies";
+import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { showComingSoonMovie } from "../redux/Thunk/ComingSoonMovie";
+import { ComingSoonMovies } from "../data";
 
 const ComingSoon = () => {
 
     const login = useSelector((state: any) => state.login)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(showComingSoonMovie() as any)
+    },[])
+
+    const {comingSoonMovieData, loading} = useSelector((state: {comingSoonMovie: {comingSoonMovieData: ComingSoonMovies[], loading: boolean, error: string}}) => state.comingSoonMovie)
+
+    // console.log("NewsData form Thunk: " , newsData)
 
 
   return (
@@ -32,7 +45,7 @@ const ComingSoon = () => {
             {/* Main section  */}
             <div className='flex  overflow-scroll scroll_none'>
                 {   
-                    comingSoonMovies.map( (comingSoonMovie) => (
+                    comingSoonMovieData.map( (comingSoonMovie) => (
                         <div key={comingSoonMovie.id} className='min-w-[420px] mx-7 '>
                             <div className='flex justify-between'>
                                 <div className='mb-[2.5rem]'>

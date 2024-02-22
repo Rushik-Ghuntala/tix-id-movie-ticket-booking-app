@@ -1,5 +1,5 @@
 // import React from 'react'
-import { movies } from '../data-API/movies-data'
+// import { movies } from '../data-API/movies-data'
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
@@ -7,8 +7,13 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { showMoviesData } from '../redux/Thunk/MoviesThunk';
+import { MoviesData } from '../data-API/movies-data';
+import { setMovieData } from '../redux/Slices/MovieBookingSlice';
+// import { showAllData } from '../redux/Slices/MoviesSlice';
 
 const Movies = () => {
 
@@ -21,6 +26,45 @@ const Movies = () => {
     };
 
     const slider = useRef<Slider>(null); // Specify Slider type here
+
+    const dispatch = useDispatch();
+
+    const [id, setId] = useState('')
+
+    const {moviesData, loading} = useSelector((state: {movies: {moviesData: MoviesData[], loading: boolean}}) => state.movies)
+
+    useEffect(() => {
+        dispatch(showMoviesData() as any)
+    },[])
+
+    const [selectedMovie, setSelectedMovie] = useState(null);
+
+    const handleMovieSelect = (movie: any) => {
+        
+        setSelectedMovie(movie);
+        console.log("handleMovieSelect: ", movie)
+        localStorage.setItem('selectedMovie', JSON.stringify(movie));
+
+        dispatch(setMovieData(movie));
+    };
+
+    // const [selectedMovie, setSelectedMovie] = useState("")
+
+
+    // const clickHandler = () => {
+    //     console.log("Select ho gaya Bhai")
+    // }
+
+
+
+    // const [selectedMovie, setSelectedMovie] = useState(null);
+
+    // // Function to handle movie selection and storage in localStorage
+    // const handleMovieSelect = (movie: any) => {
+    //     setSelectedMovie(movie);
+    //     console.log("Selected Movie: ", selectedMovie)
+    //     localStorage.setItem('selectedMovie', JSON.stringify(movie));
+    // };
 
 
 
@@ -38,12 +82,14 @@ const Movies = () => {
             <Slider ref={slider} {...settings}>
             
             {
-                movies.map( (movie) => (
+                loading ? (<h1>LOADING</h1>)
+                :
+                moviesData.map( (movie) => (
                     <div key={movie.id}  className='flex'>
                     <div className='w-[500px] h-[851px] mx-auto flex flex-col justify-between items-center'>
                         <div className='w-[500px] h-[707px]'>
-                            <Link to={`/movie-schedule?id=${movie.id}`}>
-                            <img src={movie.image} className='w-[500px] h-[707px] rounded-2xl bg-cover'/>
+                            <Link to={`/movie-schedule?id=${movie.id}`}   onClick={() => handleMovieSelect(movie)}  >
+                            <img src={movie.image} className='w-[500px] h-[707px] rounded-2xl bg-cover' />
                             </Link>
                         </div>
                         <div className='w-[500px] h-[97px] flex flex-col justify-between items-center'>

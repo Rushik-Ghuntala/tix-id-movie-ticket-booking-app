@@ -1,14 +1,32 @@
-// components/NewsPost.tsx
-import React, { useState } from 'react';
-import { newsData, NewsPostsData } from '../data-API/news-data';
+import React, { useEffect, useState } from 'react';
+// import { newsData, NewsPostsData } from '../data-API/news-data';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NewsData } from '../data';
+import { showNewsData } from '../redux/Thunk/NewsThunk';
 
 const NewsPost: React.FC = () => {
+
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(showNewsData() as any)
+  },[])
+
+  const {newsData, loading} = useSelector((state: {news: {newsData: NewsData[], loading: boolean}}) => state.news)
+
+  // console.log("NewsData form Thunk: " , newsData)
+
+
+
+
+
   const [visiblePosts, setVisiblePosts] = useState<number>(3);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all'); // Default to show all categories
+  const [selectedCategory, setSelectedCategory] = useState<string>('all'); 
   const [searchText, setSearchText] = useState<string>('');
-  const [list, setList] = useState<NewsPostsData[]>();
+  const [list, setList] = useState<NewsData[]>();
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(event.target.value);
@@ -16,7 +34,7 @@ const NewsPost: React.FC = () => {
 
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
-    const l:NewsPostsData[] = newsData.filter((post) => post.title.toLowerCase().includes(searchText.toLowerCase()));
+    const l:NewsData[] = newsData.filter((post) => post.title.toLowerCase().includes(searchText.toLowerCase()));
     if(event.target.value !== ''){
         setList(l);
     }
@@ -25,7 +43,7 @@ const NewsPost: React.FC = () => {
     }
   };
 
-  const sortNewsDataDescending = (data: NewsPostsData[]) => {
+  const sortNewsDataDescending = (data: NewsData[]) => {
     return data.slice().sort((a, b) => {
       const dateA = new Date(a.dates);
       const dateB = new Date(b.dates);
