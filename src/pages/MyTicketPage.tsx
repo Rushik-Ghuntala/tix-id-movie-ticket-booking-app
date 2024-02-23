@@ -1,81 +1,106 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { reset } from '../redux/Slices/MyTicketSlice';
-import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../redux/Slices/MyTicketSlice";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { GrLocation } from "react-icons/gr";
-
 
 const MyTicketPage = () => {
   const dispatch = useDispatch();
 
-  const {tickets} = useSelector((state: any) => state.myTicket);
+  const { tickets } = useSelector((state: any) => state.myTicket);
 
-  console.log("allTickets", tickets)
-  
+  console.log("allTickets", tickets);
+
   const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    };
     const date = new Date(dateString);
-    const formattedDate = date.toLocaleDateString('en-US', options);
-  
+    const formattedDate = date.toLocaleDateString("en-US", options);
+
     return formattedDate;
     // const [weekday, day,  month, year] = formattedDate.split(' ');
     // const date1 = day.split("").replace(",", " ");
     // const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
-  
+
     // return `${weekday} ${capitalizedMonth} ${day}  ${year}`;
   };
 
-  const clickHandler = () => {
-
-  }
-  
+  const clickHandler = () => {};
 
   return (
     <div>
-      <Navbar/>
-      <div className='w-11/12 mx-auto m-5' >
-        <p className='font-bold text-3xl text-[--Shade-900]'>My Tickets</p>
-        <p className='font-medium text-lg text-[--Shade-600]'>List of tickets and transactions you have made</p>
+      <Navbar />
+      <div className="w-11/12 mx-auto m-5 mt-[7rem]">
+        <p className="font-bold text-3xl text-[--Shade-900]">My Tickets</p>
+        <p className="font-medium text-lg text-[--Shade-600]">
+          List of tickets and transactions you have made
+        </p>
+
+        {tickets.length === 0 && (
+          <div className="font-bold text-3xl text-center m-5">
+            There are no Booked Ticket !!!
+          </div>
+        )}
 
         <div>
-          {
-            tickets.map((ticket : any, index: any) => (
-              <div key={index}>
-                <Link to={`/my-ticket/${ticket.token}`}>
-                  <div  className='flex m-10 items-center gap-x-12' >
-                    <div>
-                      <img src={ticket.movie.image}  alt="MoviePoster" className='w-48 h-64 rounded-lg'/>
+          {tickets.map((ticket: any, index: any) => (
+            <div key={index}>
+              <Link to={`/my-ticket/${ticket.token}`}>
+                <div className="flex m-10 items-center gap-x-12">
+                  <div>
+                    <img
+                      src={ticket.movie.image}
+                      alt="MoviePoster"
+                      className="w-48 h-64 rounded-lg"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-y-6">
+                    <div className="flex flex-col gap-y-1">
+                      <p className="font-medium text-3xl text-[--Shade-900]">
+                        {ticket.movie.name}
+                      </p>
+                      <p className="font-normal text-lg text-[--Shade-700]">
+                        {formatDate(ticket.date)}, {ticket.time}
+                      </p>
                     </div>
-                    <div className='flex flex-col gap-y-6'>
-                      <div className='flex flex-col gap-y-1'>
-                        <p className='font-medium text-3xl text-[--Shade-900]'>{ticket.movie.name}</p>
-                        <p className='font-normal text-lg text-[--Shade-700]'>{formatDate(ticket.date)}, {ticket.time}</p>
-                      </div>
-                      <div className='flex items-center gap-x-4'>
-                        <p className='font-normal text-xl text-[--Shade-400] flex items-center gap-x-2'>
-                          <GrLocation/>
-                          {ticket.theater.theaterName}</p>
-                        <p className='font-medium text-xl text-[--Shade-700]'>({ticket.theater.dimensionCategory})</p>
-                      </div>
+                    <div className="flex items-center gap-x-4">
+                      <p className="font-normal text-xl text-[--Shade-400] flex items-center gap-x-2">
+                        <GrLocation />
+                        {ticket.theater.theaterName}
+                      </p>
+                      <p className="font-medium text-xl text-[--Shade-700]">
+                        ({ticket.theater.dimensionCategory})
+                      </p>
+                    </div>
                   </div>
-                  </div>
-                </Link>
-                <hr className='w-full min-h-5'/>
-              </div>
-              
-            ))
-          }
+                </div>
+              </Link>
+              <hr className="w-full min-h-5" />
+            </div>
+          ))}
         </div>
 
-
-        <div>
-          <Link to={'/'}>HOME</Link>
+        <div className="w-2/12 mx-auto border p-2 border-[--Shade-300] text-[--Shade-300] rounded-md cursor-pointer">
+          <Link to={"/"}>
+            <div className="flex items-center justify-center">HOME</div>
+          </Link>
         </div>
 
-        <button onClick={() => (dispatch(reset()))}>Data Reset</button>
+        {tickets.length > 0 && (
+          <button
+            className="m-5 w-2/12 mx-auto border p-2 border-[--Shade-300] text-[--Shade-300] rounded-md cursor-pointer flex items-center justify-center"
+            onClick={() => dispatch(reset())}
+          >
+            Data Reset
+          </button>
+        )}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

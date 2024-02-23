@@ -41,7 +41,7 @@ const NewsContent = () => {
     }
 
     useEffect(() => {
-        
+        window.scrollTo(0,0)
         getId();
     }, [])
 
@@ -77,7 +77,7 @@ const NewsContent = () => {
   return (
     <div>
 
-      <div className="w-8/12 mx-auto my-10 flex flex-col gap-y-12">
+      <div className="w-8/12 mx-auto mt-[7rem] my-10 flex flex-col gap-y-12">
         <div >
           <div className="flex flex-col gap-y-5 my-10">
             <div className="font-bold text-5xl text-[--Shade-900]">{data?.title}</div>
@@ -99,7 +99,10 @@ const NewsContent = () => {
             (<div>
               {/* <iframe src={data?.source} width={500} height={300} /> */}
               <iframe className="w-full h-[35rem] rounded-xl"  src="https://www.youtube.com/embed/JfVOs4VSpmA?si=XTOZIIQpnYZMHzMJ" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
-              <div >{data?.source}</div>
+              <div className="flex items-center gap-x-4 mt-12">
+                <div className="font-bold text-2xl my-4">Source: </div>
+                <div className="font-medium text-2xl my-4">{data?.source}</div>
+              </div>
             </div>) 
           }
         </div>

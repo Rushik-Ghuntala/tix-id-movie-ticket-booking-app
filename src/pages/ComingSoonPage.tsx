@@ -13,8 +13,10 @@ const ComingSoonPage = () => {
 
   return (
     <div>
+        <div>
         <Navbar/>
-        <div className='mx-auto mt-[3rem] mb-[2rem]'>
+        </div>
+        <div className='mx-auto mt-[7rem] mb-[2rem]'>
         <div>
 
             {/* Main section  */}

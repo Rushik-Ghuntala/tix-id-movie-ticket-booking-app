@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MoviesData, TheaterData } from '../../data';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { MoviesData, TheaterData } from "../../data";
 
 // interface MovieBookingState {
 //   selectedMovie: MoviesData | null;
@@ -12,10 +12,9 @@ const initialState = {
   selectedTheater: {},
   selectedTimeSlotsList: [],
   selectedDateTime: {},
-  selectedSeats: [],
-  selectedTime: ''
+  selectedSeats: [] as string[],
+  selectedTime: "",
 };
-
 
 // interface MovieBookingState {
 //   selectedMovie: MoviesData | null;
@@ -31,13 +30,12 @@ const initialState = {
 //   selectedSeats: [],
 // };
 
-
 const movieBookingSlice = createSlice({
-  name: 'movieBooking',
+  name: "movieBooking",
   initialState,
   reducers: {
     setMovieData: (state, action) => {
-      console.log("Slice Movie che: ",state.selectedMovie)
+      console.log("Slice Movie che: ", state.selectedMovie);
       state.selectedMovie = action.payload;
     },
     setTheaterData: (state, action) => {
@@ -53,17 +51,24 @@ const movieBookingSlice = createSlice({
       state.selectedDateTime = {};
       state.selectedSeats = [];
       state.selectedTimeSlotsList = [];
-      state.selectedTime = '';
+      state.selectedTime = "";
     },
-    selectTimeSlote(state, action){
+    selectTimeSlote(state, action) {
       state.selectedTimeSlotsList = action.payload;
     },
-    selectTime(state, action){
-      state.selectedTime = action.payload
-    }
+    selectTime(state, action) {
+      state.selectedTime = action.payload;
+    },
   },
 });
 
-export const { setMovieData, setTheaterData, setSelectedSeats, resetMovieBooking, selectTimeSlote, selectTime } = movieBookingSlice.actions;
+export const {
+  setMovieData,
+  setTheaterData,
+  setSelectedSeats,
+  resetMovieBooking,
+  selectTimeSlote,
+  selectTime,
+} = movieBookingSlice.actions;
 
 export default movieBookingSlice.reducer;

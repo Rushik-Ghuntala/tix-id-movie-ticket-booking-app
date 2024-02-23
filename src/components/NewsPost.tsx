@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { NewsData } from '../data';
 import { showNewsData } from '../redux/Thunk/NewsThunk';
+import { IoSearch } from "react-icons/io5";
+
 
 const NewsPost: React.FC = () => {
 
@@ -88,33 +90,58 @@ const NewsPost: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='mt-[7rem]'>
       <div className=' w-11/12 mx-auto flex flex-col gap-5 my-9'>
         <div className='text-4xl font-bold text-[--Shade-900]'>TIX ID News</div>
         <p className='text-sm font-normal'>Latest News about the world of cinema for you!</p>
         {/* FORM */}
         <form>
-            <label htmlFor="search">Search:</label>
-            <input type="text" id="search" name="search" value={searchText} onChange={handleSearchInputChange} />
-            <div className="list-container">
+            
+          <div className='w-8/12 flex items-center justify-between'>
+            <div className='w-8/12 h-10 flex justify-between items-center border border-[--Shade-300] rounded-lg p-5 my-3'>
+              <input 
+                className='w-11/12 h-5 outline-none'
+                type="text" 
+                id="search" 
+                name="search" 
+                placeholder='Search Post'
+                value={searchText} 
+                onChange={handleSearchInputChange} 
+              />
+              <IoSearch color='var(--Shade-300)' size={25} stroke='black' strokeWidth={3}/>
+            </div>
+
+            {/* RECOMDATION CHHEE  */}
+            {/* <div className="list-container">
                 {
                     list?.map(item => (<div>{item.title}</div>))
                 }
+            </div> */}
+            
+            <div className='flex items-center gap-x-4'>
+              <label htmlFor="category">Category:</label>
+              <select 
+                id="category" 
+                name="category" 
+                value={selectedCategory} 
+                onChange={handleCategoryChange}
+                className='w-40 border border-[--Shade-300] rounded-lg p-2'
+              >
+                  <option value="all">All</option>
+                  <option value="spotlight">Spotlight</option>
+                  <option value="news">News</option>
+                  <option value="video">Video</option>
+              </select>
             </div>
-            <label htmlFor="category">Select Category:</label>
-            <select id="category" name="category" value={selectedCategory} onChange={handleCategoryChange}>
-                <option value="all">All</option>
-                <option value="spotlight">Spotlight</option>
-                <option value="news">News</option>
-                <option value="video">Video</option>
-            </select>
+
+          </div>
         </form>
         <div className='flex gap-5'>
-          <p className='border w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Spider Man</p>
-          <p className='border w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Gucci</p>
-          <p className='border w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Marvel</p>
-          <p className='border w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Peter Parker</p>
-          <p className='border w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Ghostbuster</p>
+          <p className='border border-[--Shade-500] text-[--Shade-500] hover:border-black hover:text-black hover:cursor-pointer w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Spider Man</p>
+          <p className='border border-[--Shade-500] text-[--Shade-500] hover:border-black hover:text-black hover:cursor-pointer w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Gucci</p>
+          <p className='border border-[--Shade-500] text-[--Shade-500] hover:border-black hover:text-black hover:cursor-pointer w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Marvel</p>
+          <p className='border border-[--Shade-500] text-[--Shade-500] hover:border-black hover:text-black hover:cursor-pointer w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Peter Parker</p>
+          <p className='border border-[--Shade-500] text-[--Shade-500] hover:border-black hover:text-black hover:cursor-pointer w-32 h-[2.5rem] flex justify-center items-center rounded-3xl'>Ghostbuster</p>
         </div>
       </div>
       {/* MAIN SECTION */}

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 interface Movie {
   id: number;
@@ -16,7 +16,7 @@ interface Theater {
 
 interface Date {
   date: string;
-} 
+}
 
 interface Time {
   time: string;
@@ -25,7 +25,6 @@ interface Time {
 interface Seat {
   seat: string[];
 }
-
 
 export interface TicketEntry {
   movie: Movie;
@@ -48,7 +47,7 @@ const initialState: MyTicketState = {
 };
 
 const MyTicketSlice = createSlice({
-  name: 'myTicket',
+  name: "myTicket",
   initialState,
   reducers: {
     addTicket(state, action) {

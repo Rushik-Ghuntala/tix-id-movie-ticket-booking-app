@@ -72,6 +72,12 @@ body{
   }
 }
 
+.slick-prev::before{
+  display: none;
+}
+.slick-next::before{
+  display: none;
+}
 
 
 
@@ -119,6 +125,16 @@ body{
 
 
 
+}
+
+.xxi{
+  background-image: linear-gradient(#F2C46F, #C6943F);
+}
+.cgv{
+  background-color: var(--CGV-Red);
+}
+.cinepolis{
+  background-color: var(--Cenepolis-Blue);
 }
 
 *{
