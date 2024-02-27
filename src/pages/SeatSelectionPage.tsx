@@ -12,6 +12,8 @@ import { FcClock, FcApproval } from "react-icons/fc";
 import { IoArrowBack } from "react-icons/io5";
 
 const SeatSelectionPage = () => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -120,7 +122,9 @@ const SeatSelectionPage = () => {
               <div className="w-72 flex flex-wrap gap-2">
                 {selectedTimeSlotsList.map((time: any) => (
                   <p
-                    className="border border-[--Shade-400] cursor-pointer rounded-md w-16 p-2"
+                    className={`${
+                      selectedTime === time ? "bg-[#1A2C50] text-white" : ""
+                    } border border-[--Shade-400] cursor-pointer rounded-md w-16 p-2`}
                     //className={`${selectedTime} === ${time} ? 'text-red-500' : 'text-slate-200'`}
                     onClick={() => dispatch(selectTime(time))}
                   >
@@ -135,35 +139,35 @@ const SeatSelectionPage = () => {
             <h2 className="text-2xl font-bold mb-4 text-[--Shade-900]">
               Seat Selection
             </h2>
-            <div className="grid grid-cols-20 gap-2 justify-center items-center">
+            <div className="grid grid-cols-20 gap-2 justify-start items-center overflow-scroll ">
               {renderSeats()}
             </div>
           </div>
         </div>
 
-        <div className="w-full my-14 h-16 flex justify-center items-center  uppercase bg-[--Sky-Blue] text-2xl font-bold text-[--Shade-200]">
+        <div className="w-full my-14 h-16 flex justify-center items-center  uppercase bg-[--Sky-Blue] text-md mob-s:text-xl mob-m:text-2xl font-bold text-[--Shade-200]">
           The cinema screen is here
         </div>
 
-        <div className="w-11/12 mx-auto my-9 flex items-center justify-between">
+        <div className="w-11/12 mx-auto my-9 flex flex-col gap-y-5 sm:flex-row items-center justify-between">
           <div>
-            <h3 className="font-bold text-2xl text-[--Shade-600] mb-2">
+            <h3 className="font-bold text-lg mob-m:text-xl mob-l:text-2xl text-[--Shade-600] mb-2">
               Selected Seats:
             </h3>
-            <ul className="flex gap-5 text-3xl font-bold text-[--Shade-900]">
+            <ul className="flex gap-5 text-lg mob-s:text-xl mob-m:text-2xl mob-l:text-3xl font-bold text-[--Shade-900]">
               {selectedSeats.map((seat: string) => (
                 <li key={seat}>{seat}</li>
               ))}
             </ul>
           </div>
-          <div className="flex items-center gap-10">
-            <div className="border border-[--Shade-600] rounded-md text-xl font-medium uppercase h-10 p-7 flex items-center gap-3 cursor-pointer">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            <div onClick={() => navigate(-1)} className="border border-[--Shade-600] rounded-md text-md mob-s:text-lg mob-l:text-xl font-medium uppercase h-10 p-3 mob-s:p-5 mob-l:p-7 flex items-center gap-3 cursor-pointer">
               <div>
                 <IoArrowBack size={20} />
               </div>
               <div>Back</div>
             </div>
-            <div className="border bg-[--Royal-Blue] text-[--Sunshine-Yellow]  rounded-md text-xl font-medium uppercase h-10 p-7 flex items-center gap-3 cursor-pointer">
+            <div className="border bg-[--Royal-Blue] text-[--Sunshine-Yellow]  rounded-md text-md mob-s:text-lg mob-l:text-xl font-medium uppercase h-10 p-3 mob-s:p-5 mob-l:p-7 flex items-center gap-3 cursor-pointer">
               {selectedSeats.length != 0 && (
                 <Link to={"/movie-schedule/seat-selection/confirm-payment"}>
                   <div className="flex items-center gap-3 hover:text-white">

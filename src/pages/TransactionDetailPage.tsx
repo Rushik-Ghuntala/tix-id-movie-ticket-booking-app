@@ -47,18 +47,18 @@ const TransactionDetailPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center font-bold text-4xl m-8 mt-[7rem]">
+      <div className="flex justify-center items-center font-bold text-xl mob-l:text-3xl sm:text-3xl md:text-4xl m-4 mob-l:m-8 mt-[5rem] mob-l:mt-[7rem]">
         Transaction Details
       </div>
 
       {/* MAIN CONTENT  */}
-      <div className="w-6/12 mx-auto">
+      <div className="w-[16rem] mob-s:w-[17rem] mob-m:w-[20rem] mob-l:w-[25rem] min-[530px]:w-[32rem] sm:w-[38rem] md:w-[43rem] mx-auto m-3">
         <div className="flex flex-col h-70 p-10 bg-[--Royal-Blue] rounded-t-2xl">
           <p className="font-medium text-2xl text-[--Pastel-Yellow] py-4">
             {data?.movie.name}
           </p>
 
-          <div className="flex items-center w-full justify-between">
+          <div className="flex flex-col mob-m:flex-row items-center w-full justify-between gap-x-5 mob-s:gap-x-8">
             <div className="w-full">
               <div className="flex flex-col my-4">
                 <p className="text-[--Shade-400] text-sm font-medium">
@@ -68,7 +68,7 @@ const TransactionDetailPage = () => {
                   {data?.theater.theaterName}
                 </p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex flex-col gap-y-5 min-[530px]:flex-row justify-between">
                 <div>
                   <p className="text-[--Shade-400] text-sm font-medium">Date</p>
                   <p className="text-[--Shade-100] text-lg font-medium">
@@ -85,7 +85,7 @@ const TransactionDetailPage = () => {
             </div>
 
             <div>
-              <hr className="w-[130px] h-[1px] bg-[--Shade-300] rounded-xl rotate-90" />
+              <hr className="hidden mob-l:block w-[130px] h-[1px] bg-[--Shade-300] rounded-xl rotate-90" />
             </div>
 
             <div className="w-full">
@@ -103,8 +103,8 @@ const TransactionDetailPage = () => {
           </div>
         </div>
 
-        <div className="bg-[--Pastel-Yellow] h-70 p-10 flex rounded-b-2xl">
-          <div className="w-full flex items-center gap-x-8 ">
+        <div className="bg-[--Pastel-Yellow] h-70 p-10 flex flex-col gap-y-5 sm:flex-row rounded-b-2xl">
+          <div className="w-full flex  items-center gap-x-1 mob-s:gap-x-3 mob-m:gap-x-8 ">
             <div className="flex flex-col gap-y-3">
               <p className="font-medium text-lg">Token:</p>
               <p className="font-medium text-lg">Seats:</p>
@@ -129,8 +129,10 @@ const TransactionDetailPage = () => {
       </div>
 
       {/* BILL SECTION  */}
-      <div className="w-6/12 mx-auto my-8">
-        <p className="font-medium text-2xl">Purchase Details</p>
+      <div className="w-56 mob-s:w-64 mob-m:w-72 mob-l:w-80 mx-auto my-8">
+        <p className="font-medium text-lg mob-m:text-xl mob-l:text-2xl">
+          Purchase Details
+        </p>
 
         <div className="font-normal text-lg my-4">
           <div className="flex justify-between my-4">

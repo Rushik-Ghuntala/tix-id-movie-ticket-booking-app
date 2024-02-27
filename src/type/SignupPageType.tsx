@@ -1,7 +1,7 @@
-export interface userSignupData  {
-    name: string;
-    email: string;
-    password: string;
-    phoneNumber: string;
-    countryCode: string;
+export interface userSignupData {
+  name: string;
+  email: string;
+  password: string;
+  telNumber: string;
+  countryCode: string;
 }

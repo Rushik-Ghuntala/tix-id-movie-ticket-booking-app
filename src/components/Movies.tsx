@@ -13,6 +13,7 @@ import { showMoviesData } from "../redux/Thunk/MoviesThunk";
 import { MoviesData } from "../data-API/movies-data";
 import { setMovieData } from "../redux/Slices/MovieBookingSlice";
 import { MovieSliceProps } from "../redux/Slices/MoviesSlice";
+import styled from "styled-components";
 // import { showAllData } from '../redux/Slices/MoviesSlice';
 
 const Movies = () => {
@@ -22,6 +23,14 @@ const Movies = () => {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   const slider = useRef<Slider>(null); // Specify Slider type here
@@ -64,62 +73,242 @@ const Movies = () => {
   // };
 
   return (
-    <div className="w-11/12 mx-auto flex items-center mt-[7rem] mb-[2rem]">
-      <button
-        onClick={() => slider?.current?.slickPrev()}
-        className="w-[72px] h-[72px] z-10 flex justify-center items-center rounded-full border bg-white drop-shadow-2xl"
-      >
-        <AiOutlineLeft />
-      </button>
-      <div className="w-[85%] mx-auto flex flex-col">
-        <Slider ref={slider} {...settings}>
-          {loading ? (
-            <h1>LOADING</h1>
-          ) : (
-            moviesData.map((movie) => (
-              <div key={movie.id} className="flex">
-                <div className="w-[500px] h-[851px] mx-auto flex flex-col justify-between items-center">
-                  <div className="w-[500px] h-[707px]">
-                    <Link
-                      to={`/movie-schedule?id=${movie.id}`}
-                      onClick={() => handleMovieSelect(movie)}
-                    >
-                      <img
-                        src={movie.image}
-                        className="w-[500px] h-[707px] rounded-2xl bg-cover"
-                      />
-                    </Link>
+    <div>
+      <div className="hidden mob-l:flex w-11/12 mx-auto items-center mt-[7rem] mb-[2rem]">
+        <button
+          onClick={() => slider?.current?.slickPrev()}
+          className="w-[50px] h-[50px] mob-l:w-[60px] mob-l:h-[60px]  sm:w-[65px] sm:h-[65px] md:w-[60px] md:h-[60px]  lg:w-[72px] lg:h-[72px] z-10 flex justify-center items-center rounded-full border bg-white drop-shadow-2xl"
+        >
+          <AiOutlineLeft />
+        </button>
+        <div className="w-[80%] mob-l:w-[90%]] md:w-[80%] lg:w-[85%] h-full  mx-auto flex flex-col">
+          <Slider ref={slider} {...settings}>
+            {loading ? (
+              <h1>LOADING</h1>
+            ) : (
+              moviesData.map((movie) => (
+                <div key={movie.id} className="flex">
+                  <MoviesContainer className="mx-auto flex flex-col justify-between items-center">
+                    <MoviesInnerContainer className="">
+                      <Link
+                        to={`/movie-schedule?id=${movie.id}`}
+                        onClick={() => handleMovieSelect(movie)}
+                      >
+                        <MoviePoster
+                          src={movie.image}
+                          className="rounded-2xl bg-cover"
+                        ></MoviePoster>
+                      </Link>
+                    </MoviesInnerContainer>
+                    <MoviesDescContainer className="flex flex-col justify-between items-center">
+                      <div className="font-bold text-lg mob-l:text-2xl sm:text-3xl md:text-xl lg:text-3xl xl:text-4xl text-[--Shade-900]">
+                        <p>{movie.name}</p>
+                      </div>
+                      <div className="flex gap-x-5">
+                        <div className="w-9 h-7 rounded flex items-center justify-center bg-[--XXI-Gradient1] text-[--White] font-bold text-xs">
+                          XXI
+                        </div>
+                        <div className="w-10 h-7 rounded flex items-center justify-center bg-[--CGV-Red] text-[--White] font-bold text-xs">
+                          CGV
+                        </div>
+                        <div className="w-20 h-7 rounded flex items-center justify-center bg-[--Cenepolis-Blue] text-[--White] font-bold text-xs">
+                          Cinépolis
+                        </div>
+                      </div>
+                    </MoviesDescContainer>
+                  </MoviesContainer>
+                </div>
+              ))
+            )}
+          </Slider>
+        </div>
+        <button
+          onClick={() => slider?.current?.slickNext()}
+          className="w-[50px] h-[50px] mob-l:w-[60px] mob-l:h-[60px] sm:w-[65px] sm:h-[65px] md:w-[60px] md:h-[60px]  lg:w-[72px] lg:h-[72px] z-10 flex justify-center items-center rounded-full border bg-white drop-shadow-2xl"
+        >
+          <AiOutlineRight />
+        </button>
+      </div>
+
+      <div className="flex mob-l:hidden overflow-scroll scroll_none w-full mx-auto items-center mt-[4rem] mob-s:mt-[7rem] ">
+        {moviesData.map((movie) => (
+          <div key={movie.id}>
+            <div className="min-w-[12rem] jio:min-w-[14rem] mob-s:min-w-[15rem] mob-l:min-w-[17rem] mx-4 mob-s:mx-5 ">
+              <div className="mb-4">
+                <Link
+                  to={`/movie-schedule?id=${movie.id}`}
+                  onClick={() => handleMovieSelect(movie)}
+                >
+                  <img
+                    src={movie.image}
+                    className="w-[12rem] jio:w-[13rem] mob-s:w-[15rem] mob-l:w-[17rem] h-[16rem] jio:h-[18rem] mob-s:h-[20rem] rounded-2xl bg-cover"
+                  ></img>
+                </Link>
+              </div>
+              <div className=" flex flex-col justify-between items-center gap-y-3">
+                <div className="text-sm jio:text-md mob-s:text-lg mob-l:text-xl font-bold text-[--Shade-900]">
+                  {movie.name}
+                </div>
+                <div className="flex gap-x-5">
+                  <div className="w-7 jio:w-8 mob-s:w-9 h-5 jio:h-6 mob-s:h-7 rounded flex items-center justify-center bg-[--XXI-Gradient1] text-[--White] font-medium mob-s:font-bold text-xs">
+                    XXI
                   </div>
-                  <div className="w-[500px] h-[97px] flex flex-col justify-between items-center">
-                    <div className="font-bold text-4xl text-[--Shade-900]">
-                      <p>{movie.name}</p>
-                    </div>
-                    <div className="flex gap-x-5">
-                      <div className="w-9 h-7 rounded flex items-center justify-center bg-[--XXI-Gradient1] text-[--White] font-bold text-xs">
-                        XXI
-                      </div>
-                      <div className="w-10 h-7 rounded flex items-center justify-center bg-[--CGV-Red] text-[--White] font-bold text-xs">
-                        CGV
-                      </div>
-                      <div className="w-20 h-7 rounded flex items-center justify-center bg-[--Cenepolis-Blue] text-[--White] font-bold text-xs">
-                        Cinépolis
-                      </div>
-                    </div>
+                  <div className="w-8 jio:w-9 mob-s:w-10 h-5 jio:h-6 mob-s:h-7 rounded flex items-center justify-center bg-[--CGV-Red] text-[--White] font-medium mob-s:font-bold text-xs">
+                    CGV
+                  </div>
+                  <div className="w-18 jio:w-19 mob-s:w-20 h-5 jio:h-6 mob-s:h-7 rounded flex items-center justify-center bg-[--Cenepolis-Blue] text-[--White] font-medium mob-s:font-bold text-xs">
+                    Cinépolis
                   </div>
                 </div>
               </div>
-            ))
-          )}
-        </Slider>
+            </div>
+          </div>
+        ))}
       </div>
-      <button
-        onClick={() => slider?.current?.slickNext()}
-        className="w-[72px] h-[72px] z-10 flex justify-center items-center rounded-full border bg-white drop-shadow-2xl"
-      >
-        <AiOutlineRight />
-      </button>
     </div>
   );
 };
 
 export default Movies;
+
+
+const MoviePoster = styled.img`
+  width: 13rem;
+  height: 19rem;
+
+  @media (min-width: 320px) {
+    width: 17rem;
+    height: 24rem;
+  }
+
+  @media (min-width: 425px) {
+    width: 18rem;
+    height: 25rem;
+  }
+
+  @media (min-width: 640px) {
+    width: 22rem;
+    height: 27rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 17rem;
+    height: 24rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 24rem;
+    height: 34rem;
+  }
+
+  @media (min-width: 1280px) {
+    width: 25rem;
+    height: 38rem;
+  }
+
+  @media (min-width: 1536px) {
+    width: 32rem;
+    height: 44rem;
+  }
+`;
+
+const MoviesContainer = styled.div`
+  width: 14rem;
+  height: 25rem;
+
+  @media (min-width: 320px) {
+    width: 17rem;
+    height: 29rem;
+  }
+
+  @media (min-width: 425px) {
+    width: 18rem;
+    height: 31rem;
+  }
+
+  @media (min-width: 640px) {
+    width: 22rem;
+    height: 34rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 17rem;
+    height: 31rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 24rem;
+    height: 43rem;
+  }
+
+  @media (min-width: 1280px) {
+    width: 25rem;
+    height: 47rem;
+  }
+
+  @media (min-width: 1536px) {
+    width: 32rem;
+    height: 54rem;
+  }
+`;
+
+const MoviesInnerContainer = styled.div`
+  width: 14rem;
+  height: 25rem;
+
+  @media (min-width: 320px) {
+    width: 17rem;
+    height: 29rem;
+  }
+
+  @media (min-width: 425px) {
+    width: 18rem;
+    height: 31rem;
+  }
+
+  @media (min-width: 640px) {
+    width: 22rem;
+    height: 34rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 17rem;
+    height: 31rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 24rem;
+    height: 43rem;
+  }
+
+  @media (min-width: 1280px) {
+    width: 25rem;
+    height: 38rem;
+  }
+
+  @media (min-width: 1536px) {
+    width: 32rem;
+    height: 45rem;
+  }
+`;
+
+const MoviesDescContainer = styled.div`
+  width: 29rem;
+  height: 6rem;
+
+  @media (min-width: 640px) {
+    width: 28rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 21rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 24rem;
+  }
+
+  @media (min-width: 1280px) {
+    width: 32rem;
+  }
+`;

@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { GrLocation } from "react-icons/gr";
+import { useEffect } from "react";
 
 const MyTicketPage = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => window.scrollTo(0, 0));
 
   const { tickets } = useSelector((state: any) => state.myTicket);
 
@@ -35,9 +38,11 @@ const MyTicketPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-11/12 mx-auto m-5 mt-[7rem]">
-        <p className="font-bold text-3xl text-[--Shade-900]">My Tickets</p>
-        <p className="font-medium text-lg text-[--Shade-600]">
+      <div className="w-11/12 mx-auto m-5 mt-[3rem] mob-s:mt-[5rem] mob-l:mt-[7rem]">
+        <p className="font-bold text-xl mob-m:text-2xl sm:text-3xl text-[--Shade-900]">
+          My Tickets
+        </p>
+        <p className="font-medium text-sm mob-m:text-md sm:text-lg text-[--Shade-600]">
           List of tickets and transactions you have made
         </p>
 
@@ -51,29 +56,29 @@ const MyTicketPage = () => {
           {tickets.map((ticket: any, index: any) => (
             <div key={index}>
               <Link to={`/my-ticket/${ticket.token}`}>
-                <div className="flex m-10 items-center gap-x-12">
+                <div className="flex flex-col gap-y-4 min-[720px]:flex-row m-10 items-center gap-x-12">
                   <div>
                     <img
                       src={ticket.movie.image}
                       alt="MoviePoster"
-                      className="w-48 h-64 rounded-lg"
+                      className="w-48 h-50 mob-s:h-64 rounded-lg"
                     />
                   </div>
                   <div className="flex flex-col gap-y-6">
                     <div className="flex flex-col gap-y-1">
-                      <p className="font-medium text-3xl text-[--Shade-900]">
+                      <p className="font-medium text-lg mob-m:text-xl mob-l:text-2xl min-[500px]:text-3xl text-[--Shade-900]">
                         {ticket.movie.name}
                       </p>
-                      <p className="font-normal text-lg text-[--Shade-700]">
+                      <p className="font-normal text-sm mob-m:text-md mob-l:text-lg text-[--Shade-700]">
                         {formatDate(ticket.date)}, {ticket.time}
                       </p>
                     </div>
                     <div className="flex items-center gap-x-4">
-                      <p className="font-normal text-xl text-[--Shade-400] flex items-center gap-x-2">
+                      <p className="font-normal text-sm mob-s:text-md mob-m:text-lg mob-l:text-xl text-[--Shade-400] flex items-center gap-x-2">
                         <GrLocation />
                         {ticket.theater.theaterName}
                       </p>
-                      <p className="font-medium text-xl text-[--Shade-700]">
+                      <p className="font-medium text-sm mob-s:text-md mob-m:text-lg mob-l:text-xl text-[--Shade-700]">
                         ({ticket.theater.dimensionCategory})
                       </p>
                     </div>
@@ -85,7 +90,7 @@ const MyTicketPage = () => {
           ))}
         </div>
 
-        <div className="w-2/12 mx-auto border p-2 border-[--Shade-300] text-[--Shade-300] rounded-md cursor-pointer">
+        <div className="w-20 mx-auto border p-2 border-[--Shade-300] text-[--Shade-300] rounded-md cursor-pointer">
           <Link to={"/"}>
             <div className="flex items-center justify-center">HOME</div>
           </Link>
@@ -93,7 +98,7 @@ const MyTicketPage = () => {
 
         {tickets.length > 0 && (
           <button
-            className="m-5 w-2/12 mx-auto border p-2 border-[--Shade-300] text-[--Shade-300] rounded-md cursor-pointer flex items-center justify-center"
+            className="m-5 w-32 mx-auto border p-2 border-[--Shade-300] text-[--Shade-300] rounded-md cursor-pointer flex items-center justify-center"
             onClick={() => dispatch(reset())}
           >
             Data Reset

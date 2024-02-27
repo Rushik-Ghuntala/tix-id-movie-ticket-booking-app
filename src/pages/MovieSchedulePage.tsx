@@ -12,6 +12,7 @@ import { showTheaterData } from "../redux/Thunk/TheaterThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { DimensionData, TheaterData } from "../data";
 import {
+  selectDimension,
   selectTime,
   selectTimeSlote,
   setTheaterData,
@@ -79,6 +80,10 @@ const MovieSchedulePage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const [tid, setTid] = useState("");
+
+  const { selectedTime, selectedDimensionCategory } = useSelector(
+    (state: any) => state.movieBooking
+  );
 
   // const [selectedTheaterId, setSelectedTheaterId] = useState("")
 
@@ -209,15 +214,15 @@ const MovieSchedulePage = () => {
 
       <Navbar />
 
-      <div className="w-11/12 flex mx-auto mt-[9rem]">
+      <div className="w-full min-[920px]:w-11/12 flex flex-col min-[920px]:flex-row mx-auto mt-[9rem]">
         {/* LEFT CONTAINER  */}
-        <div className="w-2/4 ">
+        <div className="w-11/12 mx-auto min-[920px]:w-2/4 ">
           <div className="font-bold text-4xl my-2">Schedule</div>
           <div className="text-base text-[--Shade-600] font-normal my-3">
             Choose the cinema schedule you want to watch
           </div>
 
-          <div className="w-11/12 h-20 my-6">
+          <div className="w-11/12 min-[920px]:w-11/12 h-20 my-6">
             <DateSelector onDateSelect={handleDateSelection} />
             <div className="w-11/12 h-1 ml-11 mt-6">
               <hr />
@@ -243,7 +248,7 @@ const MovieSchedulePage = () => {
                 </select>
               </div>
             </div>
-            <div className="w-full flex items-center gap-x-3 my-5">
+            <div className="w-full flex flex-wrap sm:flex-nowrap min-[920px]:flex-wrap gap-y-3 items-center gap-x-3 my-5">
               <div className="flex border border-black rounded-lg p-2 items-center justify-between">
                 <input
                   type="text"
@@ -299,10 +304,12 @@ const MovieSchedulePage = () => {
             {/* Render filtered theaters */}
             {filteredTheaters.map((theater) => (
               <div key={theater.id} onClick={() => setTid(theater.id)}>
-                <div className="w-full flex justify-between my-2">
+                <div className="w-full flex flex-col mob-s:flex-row justify-between my-2">
                   <div className="flex items-center gap-x-3">
                     <FcFilmReel size={25} />
-                    <h2 className="font-medium text-2xl">{theater.name}</h2>
+                    <h2 className="font-medium text-2xl mob-s:text-xl sm:text-2xl">
+                      {theater.name}
+                    </h2>
                   </div>
                   <div
                     className={`${
@@ -317,7 +324,7 @@ const MovieSchedulePage = () => {
                     <p>{theater.badge}</p>
                   </div>
                 </div>
-                <p className="font-normal text-base text-[--Shade-600]">
+                <p className="font-normal text-sm sm:text-base text-[--Shade-600]">
                   {theater.address}
                 </p>
                 {/* {renderDimensionCategories(theater.dimension)} */}
@@ -341,20 +348,32 @@ const MovieSchedulePage = () => {
                           <div>{dimension.price}</div>
                         </div>
                       </div>
-                      <ul className="w-6/12 flex flex-wrap gap-3">
+                      <ul className="w-11/12 mob-s:w-10/12 mob-m:w-9/12 mob-l:w-8/12 sm:w-7/12 md:w-6/12 flex flex-wrap gap-3">
                         {dimension.time.map((time, index) => (
                           <li
                             key={index}
-                            className="border border-[--Shade-400] text-sm font-bold cursor-pointer w-16 px-3 py-2 rounded-md"
+                            className={` ${
+                              selectedDimensionCategory ===
+                                dimension.dimensionCategory &&
+                              selectedTime === time
+                                ? "bg-[#1A2C50] text-white"
+                                : ""
+                            } border border-[--Shade-400] text-sm font-bold cursor-pointer w-16 px-3 py-2 rounded-md`}
                             onClick={() => (
                               handleTimeSlotSelection(
                                 theater.name,
                                 dimension.dimensionCategory,
                                 time,
+
                                 dimension.price,
-                                theater.badge,
+                                theater.badge
                               ),
-                              dispatch(selectTime(time))
+                              dispatch(selectTime(time)),
+                              dispatch(
+                                selectDimension(
+                                  selectedTimeSlot?.dimensionCategory
+                                )
+                              )
                             )}
                           >
                             {time}
@@ -369,14 +388,18 @@ const MovieSchedulePage = () => {
           </div>
         </div>
 
+        <div>
+          <hr className="bg-[--Shade-300] h-1 m-10" />
+        </div>
+
         {/* RIGHT CONTAINER  */}
-        <div className="w-2/4  flex flex-col justify-start items-center">
-          <div className="w-[25rem] flex flex-col gap-y-8">
+        <div className="w-11/12 mx-auto min-[920px]:w-2/4 flex flex-col justify-start items-center">
+          <div className="w-[16rem] mob-s:w-[18rem] mob-m:w-[20rem] mx-auto flex flex-col gap-y-8">
             <div>
               <img
                 src={movieData?.image}
                 alt="image"
-                className="w-[25rem] h-[30rem] rounded-lg shadow-lg "
+                className="w-[16rem] mob-s:w-[18rem] mob-m:w-[20rem] xl:w-[25rem] h-[21rem] mob-s:h-[23rem] mob-m:h-[25rem] xl:h-[30rem] rounded-lg shadow-lg "
               />
             </div>
 
@@ -400,19 +423,21 @@ const MovieSchedulePage = () => {
           </div>
 
           {/* SHOW DATE  */}
-          <div className="border border-[--Shade-600] rounded-lg px-16 py-10 my-20">
+          <div className="border border-[--Shade-600] rounded-lg px-14 xl:px-16 py-10 my-20">
             <div className="text-3xl font-bold">
               {selectedTimeSlot
                 ? `${selectedTimeSlot?.theaterName}`
                 : "Please Select The Time"}
             </div>
             <div className="mt-4 text-lg font-medium text-[--Shade-600] mt-10">
-              {selectedDate ? formatDate(selectedDate) : "No date selected"}
+              {selectedDate
+                ? formatDate(selectedDate as unknown as string)
+                : "No date selected"}
             </div>
 
             <div className="mt-2 text-center">
               {selectedTimeSlot ? (
-                <div className="flex items-center justify-between text-xl font-medium">
+                <div className="flex flex-col mob-s:flex-row items-center justify-between text-xl font-medium">
                   <div>{selectedTimeSlot.dimensionCategory}</div>
                   <div>{selectedTimeSlot.time}</div>
                 </div>

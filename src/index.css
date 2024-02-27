@@ -47,13 +47,22 @@ body{
   margin: 0 2px;
 } */
 
+.bg-login-background {
+  background-image: url('../src/assets/Login-Background.png');
+}
+.bg-signup1-background {
+  background-image: url('../src/assets/Signup-Background.png');
+}
+.bg-signup2-background {
+  background-image: url('../src/assets/Signup-Background2.png');
+}
 
-.visible {
+.visibleLogin {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
 
-.hidden {
+.hiddenLogin {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   pointer-events: none;
@@ -71,6 +80,7 @@ body{
       transform: translateX(0);
   }
 }
+
 
 .slick-prev::before{
   display: none;

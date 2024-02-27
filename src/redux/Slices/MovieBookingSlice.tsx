@@ -10,6 +10,7 @@ import { MoviesData, TheaterData } from "../../data";
 const initialState = {
   selectedMovie: {},
   selectedTheater: {},
+  selectedDimensionCategory: "",
   selectedTimeSlotsList: [],
   selectedDateTime: {},
   selectedSeats: [] as string[],
@@ -59,6 +60,9 @@ const movieBookingSlice = createSlice({
     selectTime(state, action) {
       state.selectedTime = action.payload;
     },
+    selectDimension(state, action) {
+      state.selectedDimensionCategory = action.payload;
+    }
   },
 });
 
@@ -69,6 +73,7 @@ export const {
   resetMovieBooking,
   selectTimeSlote,
   selectTime,
+  selectDimension,
 } = movieBookingSlice.actions;
 
 export default movieBookingSlice.reducer;
