@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 // import { NewsPostsData, newsData } from "../data-API/news-data";
 import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { showNewsData } from "../redux/Thunk/NewsThunk";
 import { NewsData } from "../data";
@@ -16,7 +16,7 @@ const NewsContent = () => {
     dispatch(showNewsData() as any);
   }, []);
 
-  const { newsData, loading } = useSelector(
+  const { newsData } = useSelector(
     (state: { news: { newsData: NewsData[]; loading: boolean } }) => state.news
   );
 

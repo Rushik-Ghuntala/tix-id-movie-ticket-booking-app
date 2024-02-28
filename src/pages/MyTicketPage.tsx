@@ -33,7 +33,7 @@ const MyTicketPage = () => {
     // return `${weekday} ${capitalizedMonth} ${day}  ${year}`;
   };
 
-  const clickHandler = () => {};
+  // const clickHandler = () => {};
 
   return (
     <div>

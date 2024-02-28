@@ -17,7 +17,7 @@ export const ComingSoonMovieSlice = createSlice({
         error: "",
     } as InitialStateProps,
     reducers: {
-        showAllData: (state, action) => {
+        showAllData: (state) => {
             // state.loading = false;
             console.log("state.comingSoonMovieData: ", state.comingSoonMovieData)
         }

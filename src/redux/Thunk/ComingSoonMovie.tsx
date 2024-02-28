@@ -6,7 +6,7 @@ import { comingSoonMovies } from "../../data-API/coming-soon-movies";
 
 export const showComingSoonMovie = createAsyncThunk(
     'showComingSoonMovie',
-    async (args, {rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
 
         try{
             const cominSoonMovieResult = comingSoonMovies;

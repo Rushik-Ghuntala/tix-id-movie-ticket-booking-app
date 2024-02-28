@@ -3,7 +3,7 @@ import { theaterData } from "../../data-API/theater-data";
 
 export const showTheaterData = createAsyncThunk(
   "showTheaterData",
-  async (args, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const theaterDataResult = theaterData;
       return theaterDataResult;

@@ -1,10 +1,8 @@
 // import React from 'react'
 
 import { useEffect, useState } from "react";
-// import { TheaterData, theaterData } from "../data-API/theater-data";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { MoviesData, movies } from "../data-API/movies-data";
-// import { DimensionData, TheaterData, theaterData } from "../data-API/theater-data";
 import Navbar from "../components/Navbar";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import DateSelector from "../components/DateSelector";
@@ -18,7 +16,6 @@ import {
   setTheaterData,
 } from "../redux/Slices/MovieBookingSlice";
 import Footer from "../components/Footer";
-import { IoSearch } from "react-icons/io5";
 import { FcSearch, FcFilmReel } from "react-icons/fc";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 
@@ -50,15 +47,15 @@ const MovieSchedulePage = () => {
     return formattedDate;
   };
 
-  const { theaterData, loading } = useSelector(
+  const { theaterData } = useSelector(
     (state: { theater: { theaterData: TheaterData[]; loading: boolean } }) =>
       state.theater
   );
 
   console.log("Theater Data from Thunk: ", theaterData);
 
-  const [selectedTheater, setSelectedTheater] = useState(null);
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const [_selectedTheater, setSelectedTheater] = useState(null);
+  const [_selectedDateTime, setSelectedDateTime] = useState(null);
 
   const handleMovieSelect = (theater: any) => {
     setSelectedTheater(theater);
@@ -103,10 +100,10 @@ const MovieSchedulePage = () => {
     console.log("Selected Time Slot Data: ", selectedTimeSlot);
   };
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
   const [movieData, setMovieData] = useState<MoviesData>();
   // const [cinemaData, setCinemaData] = useState<TheaterData>();
-  const [cinemaData, setCinemaData] = useState<TheaterData[]>([]);
+  const [_cinemaData, setCinemaData] = useState<TheaterData[]>([]);
 
   // const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBadge, setSelectedBadge] = useState<string>("all");

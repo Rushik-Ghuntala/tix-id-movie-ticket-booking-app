@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { TicketEntry } from "../redux/Slices/MyTicketSlice";
+import { Seat, TicketEntry } from "../redux/Slices/MyTicketSlice";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { BsDownload } from "react-icons/bs";
@@ -19,7 +19,8 @@ const TransactionDetailPage = () => {
   useEffect(() => {
     console.log(tickets);
     const filteredTicket = tickets.filter(
-      (ticket: TicketEntry) => ticket.token === parseInt(token)
+      (ticket: TicketEntry) =>
+        ticket.token === parseInt(token as unknown as string)
     );
     console.log(filteredTicket);
     // setData(filteredTicket[0]);
@@ -29,7 +30,7 @@ const TransactionDetailPage = () => {
     }
   }, [tickets, token]);
 
-  const formatDate = (dateString?: Date) => {
+  const formatDate = (dateString?: Date | undefined) => {
     if (dateString) {
       const options: Intl.DateTimeFormatOptions = {
         day: "2-digit",
@@ -72,13 +73,13 @@ const TransactionDetailPage = () => {
                 <div>
                   <p className="text-[--Shade-400] text-sm font-medium">Date</p>
                   <p className="text-[--Shade-100] text-lg font-medium">
-                    {formatDate(data?.date)}
+                    {formatDate(data?.date as unknown as Date)}
                   </p>
                 </div>
                 <div>
                   <p className="text-[--Shade-400] text-sm font-medium">Time</p>
                   <p className="text-[--Shade-100] text-lg font-medium">
-                    {data?.time}
+                    {data?.time ?? ""}
                   </p>
                 </div>
               </div>
@@ -112,9 +113,9 @@ const TransactionDetailPage = () => {
             <div className="flex flex-col gap-y-3">
               <p className="font-medium text-lg">{data?.token}</p>
               <p className="flex gap-2">
-                {data?.seat.map((chair, index) => (
+                {data?.seats?.map((chair: Seat, index: number) => (
                   <p key={index} className="font-medium text-lg">
-                    {chair}
+                    {chair.seat}
                   </p>
                 ))}
               </p>

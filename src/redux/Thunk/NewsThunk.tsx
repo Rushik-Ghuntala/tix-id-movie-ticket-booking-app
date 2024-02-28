@@ -5,7 +5,7 @@ import { newsData } from "../../data-API/news-data";
 
 export const showNewsData = createAsyncThunk(
     'showNewsData',
-    async (args, {rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
 
         try{
             const newsResult = newsData;

@@ -146,7 +146,7 @@ const Navbar = () => {
                       )}
 
                       {login.isLoggedIn && (
-                        <div className="">
+                        <div className="w-full border-2 bg-[--Royal-Blue] rounded-lg text-[--Royal-Blue] p-3 flex items-center justify-center text-2xl font-medium leading-4">
                           <Link to={"/account"}>
                             <div className="text-[--Pastel-Yellow] ">
                               {login.userData.name.charAt(0)}
@@ -169,4 +169,3 @@ const Navbar = () => {
 
 export default Navbar;
 
-const rushik = `text-4xl bg-red-700`;

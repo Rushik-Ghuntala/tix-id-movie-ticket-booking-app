@@ -84,7 +84,7 @@ const SeatSelectionPage = () => {
   };
 
   //storing all data in variable
-  const [storedData, setStoredData] = useState({
+  const [storedData] = useState({
     storedTheater: selectedTheater,
     storedTime: selectTime,
     storedSeat: selectedSeats,

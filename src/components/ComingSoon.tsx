@@ -16,7 +16,7 @@ const ComingSoon = () => {
     dispatch(showComingSoonMovie() as any);
   }, []);
 
-  const { comingSoonMovieData, loading } = useSelector(
+  const { comingSoonMovieData } = useSelector(
     (state: {
       comingSoonMovie: {
         comingSoonMovieData: ComingSoonMovies[];

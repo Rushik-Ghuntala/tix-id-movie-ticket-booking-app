@@ -6,7 +6,7 @@ import { movies } from "../../data-API/movies-data";
 
 export const showMoviesData = createAsyncThunk(
     'showMoviesData',
-    async (args, {rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
 
 
         try{

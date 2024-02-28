@@ -14,7 +14,7 @@ const NewsPost: React.FC = () => {
     dispatch(showNewsData() as any);
   }, []);
 
-  const { newsData, loading } = useSelector(
+  const { newsData } = useSelector(
     (state: { news: { newsData: NewsData[]; loading: boolean } }) => state.news
   );
 
@@ -23,7 +23,9 @@ const NewsPost: React.FC = () => {
   const [visiblePosts, setVisiblePosts] = useState<number>(3);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchText, setSearchText] = useState<string>("");
-  const [list, setList] = useState<NewsData[]>();
+
+  //Aya thi list kadhi nakhu che build na karne
+  const [_list, setList] = useState<NewsData[]>();
 
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>

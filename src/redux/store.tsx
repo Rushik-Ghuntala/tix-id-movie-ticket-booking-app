@@ -6,6 +6,7 @@ import ComingSoonMovieSlice from './Slices/ComingSoonMovieSlice'
 import  TheaterSlice  from './Slices/TheaterSlice'
 import MovieBookingSlice from './Slices/MovieBookingSlice'
 import storage from 'redux-persist/lib/storage'
+// @ts-ignore
 import persistReducer from 'redux-persist/es/persistReducer'
 import persistStore from 'redux-persist/es/persistStore'
 import MyTicketSlice from './Slices/MyTicketSlice'

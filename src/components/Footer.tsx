@@ -1,8 +1,6 @@
 // import React from 'react'
 import logo from "../assets/logo/TIX ID.svg";
-import { FaInstagram } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaFacebookSquare } from "react-icons/fa";
+import { FaInstagram, FaFacebookSquare, FaTwitter } from "react-icons/fa";
 import GooglePlay from "../assets/logo/Google Play.svg";
 import AppStore from "../assets/logo/App Store.svg";
 

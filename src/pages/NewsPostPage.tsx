@@ -9,8 +9,8 @@ import NewsContent from "../components/NewsPostContent";
 
 const NewsPostPage = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [data, setData] = useState<NewsPostsData>();
+    const [searchParams] = useSearchParams();
+    const [_data, setData] = useState<NewsPostsData>();
 
     const getId = () => {
         const id = searchParams.get("id");

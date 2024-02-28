@@ -9,6 +9,8 @@ interface Movie {
 interface Theater {
   id: string;
   name: string;
+  badge: string;
+  theaterName: string;
   dimensionCategory: string;
   time: string;
   price: number;
@@ -18,11 +20,11 @@ interface Date {
   date: string;
 }
 
-interface Time {
+export interface Time {
   time: string;
 }
 
-interface Seat {
+export interface Seat {
   seat: string[];
 }
 
@@ -30,7 +32,7 @@ export interface TicketEntry {
   movie: Movie;
   theater: Theater;
   date: Date;
-  time: Time;
+  time: string;
   seats: Seat[] | null;
   totalPrice: number;
   discount: number;

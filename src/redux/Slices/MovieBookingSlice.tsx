@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MoviesData, TheaterData } from "../../data";
+import { createSlice } from "@reduxjs/toolkit";
+// import { MoviesData, TheaterData } from "../../data";
 
 // interface MovieBookingState {
 //   selectedMovie: MoviesData | null;
@@ -62,7 +62,7 @@ const movieBookingSlice = createSlice({
     },
     selectDimension(state, action) {
       state.selectedDimensionCategory = action.payload;
-    }
+    },
   },
 });
 

@@ -16,7 +16,7 @@ const News = () => {
     dispatch(showNewsData() as any);
   }, []);
 
-  const { newsData, loading } = useSelector(
+  const { newsData } = useSelector(
     (state: { news: { newsData: NewsData[]; loading: boolean } }) => state.news
   );
 

@@ -7,9 +7,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { userLogin } from "../redux/Slices/LoginSlice";
 import { userSignupData } from "../type/SignupPageType";
-import SignupBackground from "../assets/Signup-Background.png";
-import SignupBackground2 from "../assets/Signup-Background2.png";
-import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 const SignupPage = () => {
@@ -36,13 +33,13 @@ const SignupPage = () => {
     }));
   };
 
-  const handlePhoneChange = (value: string, country: any) => {
-    setUserData((prevData) => ({
-      ...prevData,
-      phoneNumber: value,
-      countryCode: country.dialCode,
-    }));
-  };
+  // const handlePhoneChange = (value: string, country: any) => {
+  //   setUserData((prevData) => ({
+  //     ...prevData,
+  //     phoneNumber: value,
+  //     countryCode: country.dialCode,
+  //   }));
+  // };
 
   const submitHandler1 = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();

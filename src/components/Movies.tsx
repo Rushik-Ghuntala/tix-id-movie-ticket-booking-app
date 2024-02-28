@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { showMoviesData } from "../redux/Thunk/MoviesThunk";
-import { MoviesData } from "../data-API/movies-data";
 import { setMovieData } from "../redux/Slices/MovieBookingSlice";
 import { MovieSliceProps } from "../redux/Slices/MoviesSlice";
 import styled from "styled-components";
@@ -37,7 +36,7 @@ const Movies = () => {
 
   const dispatch = useDispatch();
 
-  const [id, setId] = useState("");
+  // const [id, setId] = useState("");
 
   const { moviesData, loading } = useSelector(
     (state: { movies: MovieSliceProps }) => state.movies
@@ -47,7 +46,7 @@ const Movies = () => {
     dispatch(showMoviesData() as any);
   }, []);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [_selectedMovie, setSelectedMovie] = useState(null);
 
   const handleMovieSelect = (movie: any) => {
     setSelectedMovie(movie);
@@ -170,7 +169,6 @@ const Movies = () => {
 };
 
 export default Movies;
-
 
 const MoviePoster = styled.img`
   width: 13rem;
