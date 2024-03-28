@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import { showComingSoonMovie } from "../redux/Thunk/ComingSoonMovie";
-import { ComingSoonMovies } from "../data";
+import { showComingSoonMovie } from "../../redux/Thunk/ComingSoonMovie";
+import { ComingSoonMovies } from "../../data";
 
 const ComingSoon = () => {
   const login = useSelector((state: any) => state.login);

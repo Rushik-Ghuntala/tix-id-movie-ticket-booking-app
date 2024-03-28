@@ -6,13 +6,13 @@ import {
 } from "../redux/Slices/MovieBookingSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "../components/Footer/Footer";
+import Navbar from "../components/Navbar/Navbar";
 import { FcClock, FcApproval } from "react-icons/fc";
 import { IoArrowBack } from "react-icons/io5";
 
 const SeatSelectionPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -161,7 +161,10 @@ const SeatSelectionPage = () => {
             </ul>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-10">
-            <div onClick={() => navigate(-1)} className="border border-[--Shade-600] rounded-md text-md mob-s:text-lg mob-l:text-xl font-medium uppercase h-10 p-3 mob-s:p-5 mob-l:p-7 flex items-center gap-3 cursor-pointer">
+            <div
+              onClick={() => navigate(-1)}
+              className="border border-[--Shade-600] rounded-md text-md mob-s:text-lg mob-l:text-xl font-medium uppercase h-10 p-3 mob-s:p-5 mob-l:p-7 flex items-center gap-3 cursor-pointer"
+            >
               <div>
                 <IoArrowBack size={20} />
               </div>

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Seat, TicketEntry } from "../redux/Slices/MyTicketSlice";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 import { BsDownload } from "react-icons/bs";
 
 const TransactionDetailPage = () => {

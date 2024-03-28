@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import { VoucherData } from "../data";
 import { voucherCode } from "../data-API/voucher-code";
 import { Link, useNavigate } from "react-router-dom";
 import { addTicket } from "../redux/Slices/MyTicketSlice";
 import { resetMovieBooking } from "../redux/Slices/MovieBookingSlice";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import { IoArrowBack } from "react-icons/io5";
 
 // import { resetMovieBooking } from '../redux/Slices/MovieBookingSlice';

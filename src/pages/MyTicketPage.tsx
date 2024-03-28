@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "../redux/Slices/MyTicketSlice";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 import { GrLocation } from "react-icons/gr";
 import { useEffect } from "react";
 

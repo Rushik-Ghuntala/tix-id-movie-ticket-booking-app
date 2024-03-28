@@ -6,8 +6,8 @@ import { useSearchParams } from "react-router-dom";
 import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
-import { showNewsData } from "../redux/Thunk/NewsThunk";
-import { NewsData } from "../data";
+import { showNewsData } from "../../redux/Thunk/NewsThunk";
+import { NewsData } from "../../data";
 
 const NewsContent = () => {
   const dispatch = useDispatch();

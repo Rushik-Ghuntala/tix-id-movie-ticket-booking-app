@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 // import { newsData, NewsPostsData } from '../data-API/news-data';
-import Footer from "./Footer";
+import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { NewsData } from "../data";
-import { showNewsData } from "../redux/Thunk/NewsThunk";
+import { NewsData } from "../../data";
+import { showNewsData } from "../../redux/Thunk/NewsThunk";
 import { IoSearch } from "react-icons/io5";
 
 const NewsPost: React.FC = () => {

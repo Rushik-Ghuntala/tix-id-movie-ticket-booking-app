@@ -1,5 +1,5 @@
 // import React from 'react'
-import Adv from "../assets/Adv-test.png";
+import Adv from "../../assets/Adv-test.png";
 
 const Advertisment = () => {
   return (

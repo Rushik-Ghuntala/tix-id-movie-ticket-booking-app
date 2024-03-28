@@ -1,6 +1,6 @@
 // import React, { useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 import movie1 from "../assets/logo/Clapperboard.svg";
 // import movie2 from "../assets/logo/Movie Roll.svg";
 import { Link } from "react-router-dom";

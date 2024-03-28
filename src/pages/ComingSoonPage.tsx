@@ -1,7 +1,7 @@
 // import React from 'react'
 import { useEffect } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "../components/Footer/Footer";
+import Navbar from "../components/Navbar/Navbar";
 import { comingSoonMovies } from "../data-API/coming-soon-movies";
 
 const ComingSoonPage = () => {

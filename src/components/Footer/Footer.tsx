@@ -1,8 +1,8 @@
 // import React from 'react'
-import logo from "../assets/logo/TIX ID.svg";
+import logo from "../../assets/logo/TIX ID.svg";
 import { FaInstagram, FaFacebookSquare, FaTwitter } from "react-icons/fa";
-import GooglePlay from "../assets/logo/Google Play.svg";
-import AppStore from "../assets/logo/App Store.svg";
+import GooglePlay from "../../assets/logo/Google Play.svg";
+import AppStore from "../../assets/logo/App Store.svg";
 
 const Footer = () => {
   return (

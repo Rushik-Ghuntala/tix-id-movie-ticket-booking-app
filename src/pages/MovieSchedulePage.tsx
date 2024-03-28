@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { MoviesData, movies } from "../data-API/movies-data";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import DateSelector from "../components/DateSelector";
+import DateSelector from "../utilities/DateSelector";
 import { showTheaterData } from "../redux/Thunk/TheaterThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { DimensionData, TheaterData } from "../data";
@@ -15,7 +15,7 @@ import {
   selectTimeSlote,
   setTheaterData,
 } from "../redux/Slices/MovieBookingSlice";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import { FcSearch, FcFilmReel } from "react-icons/fc";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 

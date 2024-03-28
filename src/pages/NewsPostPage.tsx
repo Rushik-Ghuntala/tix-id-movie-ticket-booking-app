@@ -1,42 +1,38 @@
 // import React from 'react'
 
-import { useSearchParams } from "react-router-dom"
-import Footer from "../components/Footer"
-import Navbar from "../components/Navbar"
+import { useSearchParams } from "react-router-dom";
+import Footer from "../components/Footer/Footer";
+import Navbar from "../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { NewsPostsData, newsData } from "../data-API/news-data";
-import NewsContent from "../components/NewsPostContent";
+import NewsContent from "../components/News/NewsPostContent";
 
 const NewsPostPage = () => {
+  const [searchParams] = useSearchParams();
+  const [_data, setData] = useState<NewsPostsData>();
 
-    const [searchParams] = useSearchParams();
-    const [_data, setData] = useState<NewsPostsData>();
-
-    const getId = () => {
-        const id = searchParams.get("id");
-        if(id) {
-          const d = newsData.filter( data => data.id === +id)
-          console.log(d[0]);
-          setData(d[0]);
-        }
+  const getId = () => {
+    const id = searchParams.get("id");
+    if (id) {
+      const d = newsData.filter((data) => data.id === +id);
+      console.log(d[0]);
+      setData(d[0]);
     }
+  };
 
-    useEffect(() => {
-        getId();
-    }, [])
-
-
-
+  useEffect(() => {
+    getId();
+  }, []);
 
   return (
     <div>
-        <Navbar/>
+      <Navbar />
 
-        <NewsContent/>
+      <NewsContent />
 
-        <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default NewsPostPage
+export default NewsPostPage;

@@ -1,5 +1,5 @@
 // import React from 'react'
-import logo from "../assets/logo/TIX ID.svg";
+import logo from "../../assets/logo/TIX ID.svg";
 import { RxDividerVertical } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -168,4 +168,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

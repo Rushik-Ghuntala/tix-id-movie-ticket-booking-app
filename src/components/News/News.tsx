@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import { showNewsData } from "../redux/Thunk/NewsThunk";
-import { NewsData } from "../data";
+import { showNewsData } from "../../redux/Thunk/NewsThunk";
+import { NewsData } from "../../data";
 
 const News = () => {
   const login = useSelector((state: any) => state.login);
